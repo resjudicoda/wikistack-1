@@ -5,6 +5,11 @@ const Page = db.define('page', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
+    //return string.replace(/[A-Z]/g, " $&");
+    // beforeValidate: (string) {
+    //   return string.replace(/[]/g, $&); 
+      
+    // },
     validate: {
       notEmpty: true,
     },
