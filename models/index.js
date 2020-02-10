@@ -5,14 +5,6 @@ const Page = db.define('page', {
   title: {
     type: Sequelize.STRING,
     allowNull: false,
-    //return string.replace(/[A-Z]/g, " $&");
-    // beforeValidate: (string) {
-    //   return string.replace(/[]/g, $&); 
-      
-    // },
-    validate: {
-      notEmpty: true,
-    },
   },
   slug: {
     type: Sequelize.STRING,
@@ -33,6 +25,15 @@ const Page = db.define('page', {
     defaultValue: 'closed',
   },
 });
+
+Page.beforeValidate((UserInstance) => {
+  if (UserInstance.title) {
+    UserInstance.slug = UserInstance.title.replace(/\s+/g, '_').replace(/\W/g, '');
+  } else {
+    UserInstance.slug = 'noTitleGiven'
+  };
+    
+})
 
 const User = db.define('user', {
   name: {
