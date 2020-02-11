@@ -5,7 +5,7 @@ const layout = require('./views/layout');
 const { db } = require('./models');
 const models = require('./models');
 const wikiRouter = require('./routes/wiki');
-const userRouter = require('./routes/user');
+const userRouter = require('./routes/users');
 
 const app = express();
 app.use(morgan('dev'));
@@ -13,7 +13,7 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ extended: false }));
 app.use('/wiki', wikiRouter);
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 
 app.get('/', (req, res) => {
